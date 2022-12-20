@@ -31,6 +31,8 @@ private void definirJogada(int linha, int coluna, int vez) {
     tabuleiro[linha][coluna] = 'X';
   else
     tabuleiro[linha][coluna] = 'O';
+
+  verificarVitoria(vez);
 }
 
 private void verificarJogada(int linha, int coluna) {
@@ -46,6 +48,49 @@ private void vezJogador(int vez) {
   } else {
     this.vez = 0;
   }
+}
+
+private void verificarVitoria(int vez) {
+  boolean vitoria = false;
+
+  // Verificar Diagonais
+  if ((tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][2] && tabuleiro[2][2] != null)
+    ||
+    (tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][0]
+      &&      tabuleiro[2][0] != null))
+    vitoria = true;
+
+  // Verificar Linhas
+  if ((tabuleiro[0][0] == tabuleiro[0][1] && tabuleiro[0][1] == tabuleiro[0][2] && tabuleiro[0][2] != null)
+    ||
+    (tabuleiro[1][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[1][2] && tabuleiro[1][2] != null)
+    ||
+    (tabuleiro[2][0] == tabuleiro[2][1] && tabuleiro[2][1] == tabuleiro[2][2]
+      &&      tabuleiro[2][2] != null))
+    vitoria = true;
+
+  // Verificar Colunas
+  if ((tabuleiro[0][0] == tabuleiro[1][0] && tabuleiro[1][0] == tabuleiro[2][0] && tabuleiro[2][0] != null)
+    ||
+    (tabuleiro[0][1] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][1] && tabuleiro[2][1] != null)
+    ||
+    (tabuleiro[0][2] == tabuleiro[1][2] && tabuleiro[1][2] == tabuleiro[2][2]
+      &&      tabuleiro[2][2] != null))
+    vitoria = true;
+
+  if (!vitoria)
+    imprimirTabuleiro();
+
+  if (rodada == 8 && vitoria == false)
+    System.out.println("Empate. Deu Velha!");
+
+  if (vitoria) {
+    imprimirTabuleiro();
+    System.out.println("Vitória do jogador " + (vez + 1));
+    rodada = 9;
+  }
+  rodada++;
+  vezJogador(vez);
 }
 
 } 
