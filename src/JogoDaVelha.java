@@ -93,4 +93,32 @@ private void verificarVitoria(int vez) {
   vezJogador(vez);
 }
 
+public void partida() {
+  int linha = 0;
+  int coluna = 0;
+  sc = new Scanner(System.in);
+
+  do {
+    System.out.println("Vez do Jogador " + (vez + 1));
+    for (;;) {
+      System.out.print("Informe a linha: ");
+      linha = sc.nextInt();
+      if (linha >= 0 && linha <= 2) {
+        break;
+      }
+    }
+
+    for (;;) {
+      System.out.print("Informe a coluna: ");
+      coluna = sc.nextInt();
+      if (coluna >= 0 && coluna <= 2) {
+        break;
+      }
+    }
+    verificarJogada(linha, coluna);
+  } while (rodada < 9);
+}
+
+}
+
 } 
