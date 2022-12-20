@@ -26,4 +26,12 @@ private void imprimirTabuleiro() {
   }
 }
 
+private void definirJogada(int linha, int coluna, int vez) {
+  if (vez == 0)
+    tabuleiro[linha][coluna] = 'X';
+  else
+    tabuleiro[linha][coluna] = 'O';
+}
+
+
 } 
