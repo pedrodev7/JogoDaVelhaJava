@@ -33,5 +33,19 @@ private void definirJogada(int linha, int coluna, int vez) {
     tabuleiro[linha][coluna] = 'O';
 }
 
+private void verificarJogada(int linha, int coluna) {
+  if (tabuleiro[linha][coluna] == null)
+    definirJogada(linha, coluna, vez);
+  else
+    System.out.println("Casa preenchida, tente novamente");
+}
+
+private void vezJogador(int vez) {
+  if (vez % 2 == 0) {
+    this.vez = 1;
+  } else {
+    this.vez = 0;
+  }
+}
 
 } 
